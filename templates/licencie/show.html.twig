@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Licencie{% endblock %}
+
+{% block body %}
+    <h1>Licencie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ licencie.id }}</td>
+            </tr>
+            <tr>
+                <th>LicenseName</th>
+                <td>{{ licencie.licenseName }}</td>
+            </tr>
+            <tr>
+                <th>LicenseFirstname</th>
+                <td>{{ licencie.licenseFirstname }}</td>
+            </tr>
+            <tr>
+                <th>LicensePicture</th>
+                <td>{{ licencie.licensePicture }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ licencie.licensePicture) }}" width="100"></td>
+            </tr>
+            <tr>
+                <th>BirthDate</th>
+                <td>{{ licencie.birthDate ? licencie.birthDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_licencie_index') }}">back to list</a>
+
+    <a href="{{ path('app_licencie_edit', {'id': licencie.id}) }}">edit</a>
+
+    {{ include('licencie/_delete_form.html.twig') }}
+{% endblock %}

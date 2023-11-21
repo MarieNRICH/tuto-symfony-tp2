@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Licencie index{% endblock %}
+
+{% block body %}
+    <h1>Licencie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>LicenseName</th>
+                <th>LicenseFirstname</th>
+                <th>LicensePicture</th>
+                <th>BirthDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for licencie in licencies %}
+            <tr>
+                <td>{{ licencie.id }}</td>
+                <td>{{ licencie.licenseName }}</td>
+                <td>{{ licencie.licenseFirstname }}</td>
+                <td>><img src="{{ asset('uploads/images/' ~ licencie.licensePicture) }}" width="100"></td>
+                <td>{{ licencie.birthDate ? licencie.birthDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_licencie_show', {'id': licencie.id}) }}">show</a>
+                    <a href="{{ path('app_licencie_edit', {'id': licencie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_licencie_new') }}">Create new</a>
+{% endblock %}
